@@ -1,0 +1,1076 @@
+z<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Academic UNIKOM — Redesign Prototype</title>
+    <meta name="description" content="Prototype Redesign Sistem Akademik My Academic UNIKOM - Desain Interaksi Perangkat Lunak">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ====== SIDEBAR NAVIGATION ====== -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-title">My Academic</span>
+                    <span class="logo-subtitle">UNIKOM</span>
+                </div>
+            </div>
+            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle Sidebar">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <!-- Quick Search in Sidebar -->
+        <div class="sidebar-search">
+            <div class="search-input-wrapper">
+                <i class="fas fa-search"></i>
+                <input type="text" id="menuSearch" placeholder="Cari menu... (Ctrl+K)" aria-label="Cari menu">
+                <kbd>⌘K</kbd>
+            </div>
+        </div>
+        <nav class="sidebar-nav" role="navigation" aria-label="Menu Utama">
+            <div class="nav-section">
+                <span class="nav-section-title">AKADEMIK</span>
+                <a href="#" class="nav-item active" data-page="dashboard" role="menuitem">
+                    <i class="fas fa-th-large"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item" data-page="krs" role="menuitem">
+                    <i class="fas fa-clipboard-list"></i>
+                    <span>Pengisian KRS</span>
+                    <span class="nav-badge urgent">Buka</span>
+                </a>
+                <a href="#" class="nav-item" data-page="jadwal" role="menuitem">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Jadwal Kuliah</span>
+                </a>
+                <a href="#" class="nav-item" data-page="nilai" role="menuitem">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Hasil Studi</span>
+                </a>
+            </div>
+            <div class="nav-section">
+                <span class="nav-section-title">LAYANAN</span>
+                <a href="#" class="nav-item" data-page="perwalian" role="menuitem">
+                    <i class="fas fa-user-tie"></i>
+                    <span>Perwalian</span>
+                    <span class="nav-badge info">1</span>
+                </a>
+                <a href="#" class="nav-item" data-page="kurikulum" role="menuitem">
+                    <i class="fas fa-book-open"></i>
+                    <span>Kurikulum</span>
+                </a>
+                <a href="#" class="nav-item" data-page="skripsi" role="menuitem">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Tugas Akhir</span>
+                </a>
+            </div>
+            <div class="nav-section">
+                <span class="nav-section-title">BANTUAN</span>
+                <a href="#" class="nav-item" data-page="keuangan" role="menuitem">
+                    <i class="fas fa-wallet"></i>
+                    <span>Keuangan</span>
+                </a>
+                <a href="#" class="nav-item" data-page="surat" role="menuitem">
+                    <i class="fas fa-envelope"></i>
+                    <span>Surat Menyurat</span>
+                </a>
+                <a href="#" class="nav-item" data-page="pengaturan" role="menuitem">
+                    <i class="fas fa-cog"></i>
+                    <span>Pengaturan</span>
+                </a>
+            </div>
+        </nav>
+        <!-- Accessibility Quick Access -->
+        <div class="sidebar-accessibility">
+            <span class="nav-section-title">AKSESIBILITAS</span>
+            <div class="accessibility-controls">
+                <button class="acc-btn" id="fontIncrease" aria-label="Perbesar teks" title="Perbesar Teks">
+                    <i class="fas fa-font"></i><sup>+</sup>
+                </button>
+                <button class="acc-btn" id="fontDecrease" aria-label="Perkecil teks" title="Perkecil Teks">
+                    <i class="fas fa-font"></i><sub>-</sub>
+                </button>
+                <button class="acc-btn" id="highContrast" aria-label="Mode kontras tinggi" title="Kontras Tinggi">
+                    <i class="fas fa-adjust"></i>
+                </button>
+                <button class="acc-btn" id="darkModeToggle" aria-label="Mode gelap" title="Mode Gelap">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ====== MAIN CONTENT ====== -->
+    <main class="main-content" id="mainContent">
+        <!-- Top Bar -->
+        <header class="topbar">
+            <div class="topbar-left">
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="breadcrumb" aria-label="Breadcrumb">
+                    <span>Home</span>
+                    <i class="fas fa-chevron-right"></i>
+                    <span class="current" id="breadcrumbCurrent">Dashboard</span>
+                </div>
+            </div>
+            <div class="topbar-right">
+                <button class="topbar-btn" id="globalSearch" aria-label="Pencarian global" title="Pencarian (Ctrl+K)">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button class="topbar-btn notification-btn" id="notificationBtn" aria-label="Notifikasi" title="Notifikasi">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-dot"></span>
+                </button>
+                <div class="user-profile" id="userProfile">
+                    <div class="user-avatar">
+                        <span>AA</span>
+                    </div>
+                    <div class="user-info">
+                        <span class="user-name">Ayudia Afina</span>
+                        <span class="user-nim">10123416</span>
+                    </div>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- ====== PAGE: DASHBOARD ====== -->
+        <div class="content-area page-content" id="page-dashboard">
+            <!-- Welcome Section -->
+            <section class="welcome-section" aria-label="Selamat Datang">
+                <div class="welcome-card">
+                    <div class="welcome-text">
+                        <span class="welcome-greeting">Selamat Pagi 👋</span>
+                        <h1>Ayudia Afina</h1>
+                        <p>Teknik Informatika — Semester 6 — IPK 3.72</p>
+                        <div class="welcome-quick-actions">
+                            <button class="quick-action-btn primary" id="btnIsiKrs">
+                                <i class="fas fa-clipboard-list"></i> Isi KRS Sekarang
+                            </button>
+                            <button class="quick-action-btn secondary" id="btnLihatJadwal">
+                                <i class="fas fa-calendar-check"></i> Lihat Jadwal Hari Ini
+                            </button>
+                        </div>
+                    </div>
+                    <div class="welcome-illustration">
+                        <div class="illustration-circle">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Status Cards -->
+            <section class="status-grid" aria-label="Status Akademik">
+                <div class="status-card" tabindex="0" onclick="showStatusModal('SKS Diambil','20 SKS','Semester 6 - Ganjil 2025/2026','blue','fa-book')">
+                    <div class="status-icon blue">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="status-info">
+                        <span class="status-value">20</span>
+                        <span class="status-label">SKS Diambil</span>
+                    </div>
+                    <div class="status-trend up">
+                        <i class="fas fa-arrow-up"></i> +2
+                    </div>
+                </div>
+                <div class="status-card" tabindex="0" onclick="showStatusModal('SKS Lulus','128 SKS','Dari total 144 SKS yang diperlukan','green','fa-check-circle')">
+                    <div class="status-icon green">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="status-info">
+                        <span class="status-value">128</span>
+                        <span class="status-label">SKS Lulus</span>
+                    </div>
+                    <div class="status-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 85%"></div>
+                        </div>
+                        <span>85%</span>
+                    </div>
+                </div>
+                <div class="status-card" tabindex="0" onclick="showStatusModal('IPK Saat Ini','3.72','Meningkat 0.05 dari semester lalu','purple','fa-trophy')">
+                    <div class="status-icon purple">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="status-info">
+                        <span class="status-value">3.72</span>
+                        <span class="status-label">IPK Saat Ini</span>
+                    </div>
+                    <div class="status-trend up">
+                        <i class="fas fa-arrow-up"></i> +0.05
+                    </div>
+                </div>
+                <div class="status-card" tabindex="0" onclick="showStatusModal('Semester Tersisa','3 Semester','Estimasi lulus tahun 2027','orange','fa-clock')">
+                    <div class="status-icon orange">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="status-info">
+                        <span class="status-value">3</span>
+                        <span class="status-label">Semester Tersisa</span>
+                    </div>
+                    <div class="status-eta">
+                        <i class="fas fa-flag-checkered"></i> Est. 2027
+                    </div>
+                </div>
+            </section>
+            <!-- Main Content Grid -->
+            <div class="content-grid">
+                <!-- Today's Schedule -->
+                <section class="content-card schedule-card" aria-label="Jadwal Hari Ini">
+                    <div class="card-header">
+                        <h2><i class="fas fa-calendar-day"></i> Jadwal Hari Ini</h2>
+                        <span class="card-date">Selasa, 3 Juni 2026</span>
+                    </div>
+                    <div class="schedule-list">
+                        <div class="schedule-item current">
+                            <div class="schedule-time">
+                                <span class="time-start">08:00</span>
+                                <span class="time-end">10:30</span>
+                            </div>
+                            <div class="schedule-divider">
+                                <div class="divider-dot current"></div>
+                                <div class="divider-line"></div>
+                            </div>
+                            <div class="schedule-detail">
+                                <span class="schedule-subject">Desain Interaksi Perangkat Lunak</span>
+                                <span class="schedule-info"><i class="fas fa-map-marker-alt"></i> Ruang 9.3.2 — <i class="fas fa-user"></i> Alif Finandhita</span>
+                                <span class="schedule-status ongoing">Sedang Berlangsung</span>
+                            </div>
+                        </div>
+                        <div class="schedule-item upcoming">
+                            <div class="schedule-time">
+                                <span class="time-start">13:00</span>
+                                <span class="time-end">15:30</span>
+                            </div>
+                            <div class="schedule-divider">
+                                <div class="divider-dot"></div>
+                                <div class="divider-line"></div>
+                            </div>
+                            <div class="schedule-detail">
+                                <span class="schedule-subject">Pemrograman Mobile</span>
+                                <span class="schedule-info"><i class="fas fa-map-marker-alt"></i> Lab 8.1.1 — <i class="fas fa-user"></i> Dosen B</span>
+                                <span class="schedule-status upcoming-badge">4 jam lagi</span>
+                            </div>
+                        </div>
+                        <div class="schedule-item">
+                            <div class="schedule-time">
+                                <span class="time-start">16:00</span>
+                                <span class="time-end">18:00</span>
+                            </div>
+                            <div class="schedule-divider">
+                                <div class="divider-dot"></div>
+                            </div>
+                            <div class="schedule-detail">
+                                <span class="schedule-subject">Kecerdasan Buatan</span>
+                                <span class="schedule-info"><i class="fas fa-map-marker-alt"></i> Ruang 7.2.1 — <i class="fas fa-user"></i> Dosen C</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Notifications & Announcements -->
+                <section class="content-card notification-card" aria-label="Notifikasi">
+                    <div class="card-header">
+                        <h2><i class="fas fa-bell"></i> Notifikasi Terbaru</h2>
+                        <a href="#" class="see-all">Lihat Semua</a>
+                    </div>
+                    <div class="notification-list">
+                        <div class="notif-item unread">
+                            <div class="notif-icon warning">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="notif-content">
+                                <span class="notif-title">Batas Pengisian KRS</span>
+                                <span class="notif-desc">Pengisian KRS semester ganjil berakhir dalam 3 hari.</span>
+                                <span class="notif-time">2 jam yang lalu</span>
+                            </div>
+                        </div>
+                        <div class="notif-item unread">
+                            <div class="notif-icon success">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="notif-content">
+                                <span class="notif-title">Nilai Telah Diperbarui</span>
+                                <span class="notif-desc">Nilai mata kuliah Basis Data telah diinput oleh dosen.</span>
+                                <span class="notif-time">5 jam yang lalu</span>
+                            </div>
+                        </div>
+                        <div class="notif-item">
+                            <div class="notif-icon info">
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                            <div class="notif-content">
+                                <span class="notif-title">Jadwal Perwalian</span>
+                                <span class="notif-desc">Jadwal perwalian akan dimulai minggu depan.</span>
+                                <span class="notif-time">1 hari yang lalu</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- GPA Chart -->
+                <section class="content-card gpa-card" aria-label="Grafik IPK">
+                    <div class="card-header">
+                        <h2><i class="fas fa-chart-line"></i> Perkembangan IPK</h2>
+                    </div>
+                    <div class="gpa-chart">
+                        <div class="chart-container" id="gpaChart"></div>
+                    </div>
+                </section>
+                <!-- Quick Links -->
+                <section class="content-card quick-links-card" aria-label="Akses Cepat">
+                    <div class="card-header">
+                        <h2><i class="fas fa-bolt"></i> Akses Cepat</h2>
+                    </div>
+                    <div class="quick-links-grid">
+                        <a href="#" class="quick-link" tabindex="0">
+                            <div class="ql-icon blue"><i class="fas fa-print"></i></div>
+                            <span>Cetak KRS</span>
+                        </a>
+                        <a href="#" class="quick-link" tabindex="0">
+                            <div class="ql-icon green"><i class="fas fa-file-pdf"></i></div>
+                            <span>Transkrip</span>
+                        </a>
+                        <a href="#" class="quick-link" tabindex="0">
+                            <div class="ql-icon purple"><i class="fas fa-headset"></i></div>
+                            <span>Bantuan</span>
+                        </a>
+                        <a href="#" class="quick-link" tabindex="0">
+                            <div class="ql-icon orange"><i class="fas fa-qrcode"></i></div>
+                            <span>Presensi</span>
+                        </a>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- ====== PAGE: PENGISIAN KRS ====== -->
+        <div class="content-area page-content" id="page-krs" style="display:none;">
+            <div class="page-header-section">
+                <h1 class="page-title"><i class="fas fa-clipboard-list"></i> Pengisian KRS</h1>
+                <p class="page-subtitle">Semester Ganjil 2025/2026 — Batas: <strong>6 Juni 2026</strong></p>
+            </div>
+            <div class="krs-container">
+                <!-- KRS Info Bar -->
+                <div class="krs-info-bar">
+                    <div class="krs-info-item">
+                        <span class="krs-info-label">SKS Dipilih</span>
+                        <span class="krs-info-value" id="sksDipilih">6</span>
+                    </div>
+                    <div class="krs-info-item">
+                        <span class="krs-info-label">Maks. SKS</span>
+                        <span class="krs-info-value">24</span>
+                    </div>
+                    <div class="krs-info-item">
+                        <span class="krs-info-label">Status KRS</span>
+                        <span class="krs-info-value" style="color:var(--accent-orange);">Belum Final</span>
+                    </div>
+                    <div class="krs-info-item">
+                        <span class="krs-info-label">IPK Sem. Lalu</span>
+                        <span class="krs-info-value">3.85</span>
+                    </div>
+                </div>
+                <!-- Mata Kuliah Table -->
+                <div class="content-card" style="padding: 0; overflow: hidden;">
+                    <div class="card-header" style="padding: 20px 24px;">
+                        <h2><i class="fas fa-list"></i> Daftar Mata Kuliah Tersedia</h2>
+                        <div style="display:flex; gap: 8px;">
+                            <input type="text" placeholder="Cari mata kuliah..." style="padding: 8px 12px; border: 1px solid var(--border-light); border-radius: 8px; font-size: 0.85rem; background: var(--bg-primary); color: var(--text-primary);">
+                        </div>
+                    </div>
+                    <table class="krs-table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Kode</th>
+                                <th>Mata Kuliah</th>
+                                <th>SKS</th>
+                                <th>Dosen</th>
+                                <th>Kelas</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="krs-row selected">
+                                <td><input type="checkbox" checked onchange="updateSKS()" data-sks="3"></td>
+                                <td><span class="kode-mk">IF601</span></td>
+                                <td>Pemrograman Web</td>
+                                <td>3</td>
+                                <td>Dosen A</td>
+                                <td>IF-6-A</td>
+                                <td><span class="badge-available">Tersedia</span></td>
+                            </tr>
+                            <tr class="krs-row selected">
+                                <td><input type="checkbox" checked onchange="updateSKS()" data-sks="3"></td>
+                                <td><span class="kode-mk">IF602</span></td>
+                                <td>Desain Interaksi Perangkat Lunak</td>
+                                <td>3</td>
+                                <td>Alif Finandhita</td>
+                                <td>IF-6-B</td>
+                                <td><span class="badge-available">Tersedia</span></td>
+                            </tr>
+                            <tr class="krs-row">
+                                <td><input type="checkbox" onchange="updateSKS()" data-sks="3"></td>
+                                <td><span class="kode-mk">IF603</span></td>
+                                <td>Kecerdasan Buatan</td>
+                                <td>3</td>
+                                <td>Dosen C</td>
+                                <td>IF-6-A</td>
+                                <td><span class="badge-available">Tersedia</span></td>
+                            </tr>
+                            <tr class="krs-row">
+                                <td><input type="checkbox" onchange="updateSKS()" data-sks="3"></td>
+                                <td><span class="kode-mk">IF604</span></td>
+                                <td>Pemrograman Mobile</td>
+                                <td>3</td>
+                                <td>Dosen B</td>
+                                <td>IF-6-B</td>
+                                <td><span class="badge-available">Tersedia</span></td>
+                            </tr>
+                            <tr class="krs-row">
+                                <td><input type="checkbox" onchange="updateSKS()" data-sks="2"></td>
+                                <td><span class="kode-mk">IF605</span></td>
+                                <td>Kerja Praktik</td>
+                                <td>2</td>
+                                <td>Koordinator KP</td>
+                                <td>—</td>
+                                <td><span class="badge-available">Tersedia</span></td>
+                            </tr>
+                            <tr class="krs-row">
+                                <td><input type="checkbox" disabled data-sks="3"></td>
+                                <td><span class="kode-mk">IF606</span></td>
+                                <td>Sistem Terdistribusi</td>
+                                <td>3</td>
+                                <td>Dosen D</td>
+                                <td>IF-6-A</td>
+                                <td><span class="badge-full">Penuh</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div style="display: flex; gap: 12px; margin-top: 16px; justify-content: flex-end;">
+                    <button class="quick-action-btn secondary"><i class="fas fa-save"></i> Simpan Sementara</button>
+                    <button class="quick-action-btn primary" onclick="alert('KRS berhasil difinalisasi! Silakan cetak KRS Anda.')"><i class="fas fa-check-circle"></i> Finalisasi KRS</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ====== PAGE: JADWAL KULIAH ====== -->
+        <div class="content-area page-content" id="page-jadwal" style="display:none;">
+            <div class="page-header-section">
+                <h1 class="page-title"><i class="fas fa-calendar-alt"></i> Jadwal Kuliah</h1>
+                <p class="page-subtitle">Semester Ganjil 2025/2026</p>
+            </div>
+            <!-- Week Navigation -->
+            <div class="content-card" style="margin-bottom: 20px;">
+                <div style="display: flex; align-items: center; justify-content: space-between; padding: 4px 0;">
+                    <button class="quick-action-btn secondary" style="padding: 8px 16px;"><i class="fas fa-chevron-left"></i> Minggu Lalu</button>
+                    <span style="font-weight: 600; color: var(--text-primary);">2 — 6 Juni 2026</span>
+                    <button class="quick-action-btn secondary" style="padding: 8px 16px;">Minggu Depan <i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+            <!-- Schedule by Day -->
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+                <!-- Monday -->
+                <div class="content-card">
+                    <div class="card-header">
+                        <h2 style="font-size: 1rem;"><i class="fas fa-calendar-day"></i> Senin, 2 Juni 2026</h2>
+                    </div>
+                    <div class="schedule-list">
+                        <div class="schedule-item">
+                            <div class="schedule-time"><span class="time-start">09:00</span><span class="time-end">11:30</span></div>
+                            <div class="schedule-divider"><div class="divider-dot"></div><div class="divider-line"></div></div>
+                            <div class="schedule-detail">
+                                <span class="schedule-subject">Pemrograman Web</span>
+                                <span class="schedule-info"><i class="fas fa-map-marker-alt"></i> Ruang 8.2.1 — <i class="fas fa-user"></i> Dosen A</span>
+                            </div>
+                        </div>
+                        <div class="schedule-item">
+                            <div class="schedule-time"><span class="time-start">13:00</span><span class="time-end">15:30</span></div>
+                            <div class="schedule-divider"><div class="divider-dot"></div></div>
+                            <div class="schedule-detail">
+                                <span class="schedule-subject">Kecerdasan Buatan</span>
+                                <span class="schedule-info"><i class="fas fa-map-marker-alt"></i> Ruang 7.2.1 — <i class="fas fa-user"></i> Dosen C</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tuesday -->
+                <div class="content-card" style="border-left: 3px solid var(--primary-500);">
+                    <div class="card-header">
+                        <h2 style="font-size: 1rem;"><i class="fas fa-calendar-day"></i> Selasa, 3 Juni 2026</h2>
+                        <span class="schedule-status ongoing" style="font-size: 0.75rem; padding: 4px 10px;">Hari Ini</span>
+                    </div>
+                    <div class="schedule-list">
+                        <div class="schedule-item current">
+                            <div class="schedule-time"><span class="time-start">08:00</span><span class="time-end">10:30</span></div>
+                            <div class="schedule-divider"><div class="divider-dot current"></div><div class="divider-line"></div></div>
+                            <div class="schedule-detail">
+                                <span class="schedule-subject">Desain Interaksi Perangkat Lunak</span>
+                                <span class="schedule-info"><i class="fas fa-map-marker-alt"></i> Ruang 9.3.2 — <i class="fas fa-user"></i> Alif Finandhita</span>
+                                <span class="schedule-status ongoing">Sedang Berlangsung</span>
+                            </div>
+                        </div>
+                        <div class="schedule-item upcoming">
+                            <div class="schedule-time"><span class="time-start">13:00</span><span class="time-end">15:30</span></div>
+                            <div class="schedule-divider"><div class="divider-dot"></div><div class="divider-line"></div></div>
+                            <div class="schedule-detail">
+                                <span class="schedule-subject">Pemrograman Mobile</span>
+                                <span class="schedule-info"><i class="fas fa-map-marker-alt"></i> Lab 8.1.1 — <i class="fas fa-user"></i> Dosen B</span>
+                                <span class="schedule-status upcoming-badge">4 jam lagi</span>
+                            </div>
+                        </div>
+                        <div class="schedule-item">
+                            <div class="schedule-time"><span class="time-start">16:00</span><span class="time-end">18:00</span></div>
+                            <div class="schedule-divider"><div class="divider-dot"></div></div>
+                            <div class="schedule-detail">
+                                <span class="schedule-subject">Kecerdasan Buatan</span>
+                                <span class="schedule-info"><i class="fas fa-map-marker-alt"></i> Ruang 7.2.1 — <i class="fas fa-user"></i> Dosen C</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Wednesday -->
+                <div class="content-card">
+                    <div class="card-header">
+                        <h2 style="font-size: 1rem;"><i class="fas fa-calendar-day"></i> Rabu, 4 Juni 2026</h2>
+                    </div>
+                    <div style="padding: 16px 0; text-align: center; color: var(--text-tertiary);">
+                        <i class="fas fa-coffee" style="font-size: 2rem; margin-bottom: 8px; display: block;"></i>
+                        Tidak ada kelas — Selamat istirahat!
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ====== PAGE: HASIL STUDI ====== -->
+        <div class="content-area page-content" id="page-nilai" style="display:none;">
+            <div class="page-header-section">
+                <h1 class="page-title"><i class="fas fa-chart-line"></i> Hasil Studi</h1>
+                <p class="page-subtitle">Rekap nilai seluruh semester</p>
+            </div>
+            <!-- IPK Summary -->
+            <div class="status-grid" style="margin-bottom: 20px;">
+                <div class="status-card">
+                    <div class="status-icon purple"><i class="fas fa-trophy"></i></div>
+                    <div class="status-info"><span class="status-value">3.72</span><span class="status-label">IPK Kumulatif</span></div>
+                </div>
+                <div class="status-card">
+                    <div class="status-icon blue"><i class="fas fa-star"></i></div>
+                    <div class="status-info"><span class="status-value">3.85</span><span class="status-label">IPS Terakhir</span></div>
+                </div>
+                <div class="status-card">
+                    <div class="status-icon green"><i class="fas fa-book"></i></div>
+                    <div class="status-info"><span class="status-value">128</span><span class="status-label">SKS Lulus</span></div>
+                </div>
+                <div class="status-card">
+                    <div class="status-icon orange"><i class="fas fa-award"></i></div>
+                    <div class="status-info"><span class="status-value">Cum Laude</span><span class="status-label">Predikat (Proyeksi)</span></div>
+                </div>
+            </div>
+            <!-- Nilai Per Semester -->
+            <div class="content-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-table"></i> Nilai Semester 6</h2>
+                    <div style="display:flex; gap: 8px;">
+                        <select style="padding: 8px 12px; border: 1px solid var(--border-light); border-radius: 8px; font-size: 0.85rem; background: var(--bg-primary); color: var(--text-primary);">
+                            <option>Semester 6 - Ganjil 2025/26</option>
+                            <option>Semester 5 - Genap 2024/25</option>
+                            <option>Semester 4 - Ganjil 2024/25</option>
+                        </select>
+                        <button class="quick-action-btn secondary" style="padding: 8px 14px; font-size: 0.85rem;"><i class="fas fa-download"></i> Unduh Transkrip</button>
+                    </div>
+                </div>
+                <table class="krs-table">
+                    <thead>
+                        <tr>
+                            <th>Kode</th>
+                            <th>Mata Kuliah</th>
+                            <th>SKS</th>
+                            <th>Nilai Angka</th>
+                            <th>Nilai Huruf</th>
+                            <th>Bobot</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><span class="kode-mk">IF501</span></td><td>Basis Data Lanjut</td><td>3</td><td>92</td><td><strong style="color:var(--accent-green)">A</strong></td><td>4.00</td><td><span class="badge-available">Lulus</span></td></tr>
+                        <tr><td><span class="kode-mk">IF502</span></td><td>Rekayasa Perangkat Lunak</td><td>3</td><td>85</td><td><strong style="color:var(--primary-500)">B+</strong></td><td>3.50</td><td><span class="badge-available">Lulus</span></td></tr>
+                        <tr><td><span class="kode-mk">IF503</span></td><td>Jaringan Komputer</td><td>3</td><td>88</td><td><strong style="color:var(--primary-500)">A-</strong></td><td>3.75</td><td><span class="badge-available">Lulus</span></td></tr>
+                        <tr><td><span class="kode-mk">IF504</span></td><td>Statistika & Probabilitas</td><td>2</td><td>79</td><td><strong style="color:var(--accent-orange)">B</strong></td><td>3.00</td><td><span class="badge-available">Lulus</span></td></tr>
+                        <tr><td><span class="kode-mk">IF505</span></td><td>Etika Profesi IT</td><td>2</td><td>90</td><td><strong style="color:var(--accent-green)">A</strong></td><td>4.00</td><td><span class="badge-available">Lulus</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ====== PAGE: PERWALIAN ====== -->
+        <div class="content-area page-content" id="page-perwalian" style="display:none;">
+            <div class="page-header-section">
+                <h1 class="page-title"><i class="fas fa-user-tie"></i> Perwalian</h1>
+                <p class="page-subtitle">Konsultasi & Bimbingan Akademik</p>
+            </div>
+            <div class="content-grid">
+                <div class="content-card">
+                    <div class="card-header"><h2><i class="fas fa-id-card"></i> Dosen Wali Saya</h2></div>
+                    <div style="display:flex; align-items:center; gap: 16px; padding: 16px 0;">
+                        <div style="width:64px; height:64px; border-radius:50%; background: var(--primary-100); display:flex; align-items:center; justify-content:center; font-size:1.8rem; color: var(--primary-600);">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div>
+                            <h3 style="margin:0 0 4px; color: var(--text-primary);">Dr. Budi Santoso, M.T.</h3>
+                            <p style="margin:0; color: var(--text-secondary); font-size:0.9rem;"><i class="fas fa-envelope"></i> budi.santoso@unikom.ac.id</p>
+                            <p style="margin:4px 0 0; color: var(--text-secondary); font-size:0.9rem;"><i class="fas fa-phone"></i> +62 812-xxxx-xxxx</p>
+                        </div>
+                    </div>
+                    <button class="quick-action-btn primary" style="width:100%; margin-top: 8px;" onclick="alert('Permintaan perwalian berhasil dikirim ke dosen wali!')">
+                        <i class="fas fa-calendar-plus"></i> Buat Jadwal Perwalian
+                    </button>
+                </div>
+                <div class="content-card">
+                    <div class="card-header"><h2><i class="fas fa-history"></i> Riwayat Perwalian</h2></div>
+                    <div class="notification-list">
+                        <div class="notif-item">
+                            <div class="notif-icon success"><i class="fas fa-check"></i></div>
+                            <div class="notif-content">
+                                <span class="notif-title">Perwalian Sem. 5</span>
+                                <span class="notif-desc">Disetujui — KRS 20 SKS</span>
+                                <span class="notif-time">15 Januari 2026</span>
+                            </div>
+                        </div>
+                        <div class="notif-item unread">
+                            <div class="notif-icon warning"><i class="fas fa-clock"></i></div>
+                            <div class="notif-content">
+                                <span class="notif-title">Perwalian Sem. 6</span>
+                                <span class="notif-desc">Menunggu persetujuan dosen wali</span>
+                                <span class="notif-time">1 Juni 2026</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ====== PAGE: KURIKULUM ====== -->
+        <div class="content-area page-content" id="page-kurikulum" style="display:none;">
+            <div class="page-header-section">
+                <h1 class="page-title"><i class="fas fa-book-open"></i> Kurikulum</h1>
+                <p class="page-subtitle">Struktur kurikulum Program Studi Teknik Informatika</p>
+            </div>
+            <div class="content-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-stream"></i> Progress Kurikulum</h2>
+                    <span style="color: var(--accent-green); font-weight: 600;">85% Selesai</span>
+                </div>
+                <div style="margin-bottom: 16px;">
+                    <div class="progress-bar" style="height: 10px; border-radius: 999px; background: var(--gray-200);">
+                        <div class="progress-fill" style="width: 85%; border-radius: 999px;"></div>
+                    </div>
+                    <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 8px;">128 dari 144 SKS telah diselesaikan</p>
+                </div>
+                <table class="krs-table">
+                    <thead>
+                        <tr><th>Kelompok MK</th><th>SKS Wajib</th><th>SKS Selesai</th><th>Status</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Mata Kuliah Umum</td><td>8</td><td>8</td><td><span class="badge-available">Selesai</span></td></tr>
+                        <tr><td>MK Dasar Keahlian</td><td>40</td><td>40</td><td><span class="badge-available">Selesai</span></td></tr>
+                        <tr><td>MK Keahlian</td><td>60</td><td>52</td><td><span class="badge-full" style="background:var(--accent-orange-light); color:var(--accent-orange);">Dalam Proses</span></td></tr>
+                        <tr><td>MK Pilihan</td><td>16</td><td>16</td><td><span class="badge-available">Selesai</span></td></tr>
+                        <tr><td>Tugas Akhir</td><td>6</td><td>0</td><td><span class="badge-full">Belum Dimulai</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ====== PAGE: TUGAS AKHIR ====== -->
+        <div class="content-area page-content" id="page-skripsi" style="display:none;">
+            <div class="page-header-section">
+                <h1 class="page-title"><i class="fas fa-file-alt"></i> Tugas Akhir</h1>
+                <p class="page-subtitle">Monitoring & Pengajuan Tugas Akhir / Skripsi</p>
+            </div>
+            <div class="content-card" style="margin-bottom: 20px;">
+                <div class="card-header"><h2><i class="fas fa-info-circle"></i> Status Pengajuan</h2></div>
+                <div style="padding: 24px; text-align: center; color: var(--text-secondary);">
+                    <i class="fas fa-file-circle-question" style="font-size: 3rem; color: var(--primary-300); margin-bottom: 16px; display: block;"></i>
+                    <h3 style="color: var(--text-primary); margin-bottom: 8px;">Belum Ada Pengajuan</h3>
+                    <p>Anda belum mengajukan Tugas Akhir. Pastikan telah memenuhi syarat minimum SKS (110 SKS) dan IPK ≥ 2.50.</p>
+                    <button class="quick-action-btn primary" style="margin-top: 16px;" onclick="alert('Form pengajuan TA akan dibuka setelah memenuhi semua persyaratan.')">
+                        <i class="fas fa-plus-circle"></i> Ajukan Tugas Akhir
+                    </button>
+                </div>
+            </div>
+            <div class="content-card">
+                <div class="card-header"><h2><i class="fas fa-list-check"></i> Syarat Pengajuan TA</h2></div>
+                <div style="padding: 8px 0;">
+                    <div style="display:flex; align-items:center; gap:12px; padding: 10px 0; border-bottom: 1px solid var(--border-light);">
+                        <i class="fas fa-check-circle" style="color: var(--accent-green); width: 20px;"></i>
+                        <span>Minimal 110 SKS telah lulus <strong>(✓ 128 SKS)</strong></span>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:12px; padding: 10px 0; border-bottom: 1px solid var(--border-light);">
+                        <i class="fas fa-check-circle" style="color: var(--accent-green); width: 20px;"></i>
+                        <span>IPK minimal 2.50 <strong>(✓ IPK 3.72)</strong></span>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:12px; padding: 10px 0; border-bottom: 1px solid var(--border-light);">
+                        <i class="fas fa-times-circle" style="color: var(--accent-red); width: 20px;"></i>
+                        <span>Sudah mengambil MK Metodologi Penelitian <strong>(Belum)</strong></span>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:12px; padding: 10px 0;">
+                        <i class="fas fa-times-circle" style="color: var(--accent-red); width: 20px;"></i>
+                        <span>Tidak ada nilai D atau E <strong>(Perlu dicek)</strong></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ====== PAGE: KEUANGAN ====== -->
+        <div class="content-area page-content" id="page-keuangan" style="display:none;">
+            <div class="page-header-section">
+                <h1 class="page-title"><i class="fas fa-wallet"></i> Keuangan</h1>
+                <p class="page-subtitle">Informasi tagihan dan pembayaran akademik</p>
+            </div>
+            <div class="status-grid" style="margin-bottom: 20px;">
+                <div class="status-card">
+                    <div class="status-icon green"><i class="fas fa-check-circle"></i></div>
+                    <div class="status-info"><span class="status-value">Lunas</span><span class="status-label">Status SPP</span></div>
+                </div>
+                <div class="status-card">
+                    <div class="status-icon blue"><i class="fas fa-money-bill-wave"></i></div>
+                    <div class="status-info"><span class="status-value">Rp 3.5jt</span><span class="status-label">SPP Semester Ini</span></div>
+                </div>
+            </div>
+            <div class="content-card">
+                <div class="card-header"><h2><i class="fas fa-receipt"></i> Riwayat Pembayaran</h2></div>
+                <table class="krs-table">
+                    <thead><tr><th>Semester</th><th>Keterangan</th><th>Jumlah</th><th>Tanggal</th><th>Status</th></tr></thead>
+                    <tbody>
+                        <tr><td>Sem 6</td><td>SPP Ganjil 2025/26</td><td>Rp 3.500.000</td><td>5 Agust 2025</td><td><span class="badge-available">Lunas</span></td></tr>
+                        <tr><td>Sem 5</td><td>SPP Genap 2024/25</td><td>Rp 3.500.000</td><td>3 Feb 2025</td><td><span class="badge-available">Lunas</span></td></tr>
+                        <tr><td>Sem 4</td><td>SPP Ganjil 2024/25</td><td>Rp 3.500.000</td><td>7 Agust 2024</td><td><span class="badge-available">Lunas</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ====== PAGE: SURAT MENYURAT ====== -->
+        <div class="content-area page-content" id="page-surat" style="display:none;">
+            <div class="page-header-section">
+                <h1 class="page-title"><i class="fas fa-envelope"></i> Surat Menyurat</h1>
+                <p class="page-subtitle">Pengajuan surat keterangan dan dokumen akademik</p>
+            </div>
+            <div class="content-grid">
+                <div class="content-card">
+                    <div class="card-header"><h2><i class="fas fa-plus-circle"></i> Ajukan Surat Baru</h2></div>
+                    <div style="display: flex; flex-direction: column; gap: 12px; padding: 8px 0;">
+                        <button class="quick-action-btn secondary" style="justify-content: flex-start; gap: 12px;" onclick="alert('Formulir surat keterangan aktif akan dibuka.')">
+                            <i class="fas fa-id-card" style="width:20px;"></i> Surat Keterangan Aktif Kuliah
+                        </button>
+                        <button class="quick-action-btn secondary" style="justify-content: flex-start; gap: 12px;" onclick="alert('Formulir surat keterangan lulus akan dibuka.')">
+                            <i class="fas fa-graduation-cap" style="width:20px;"></i> Surat Keterangan Lulus
+                        </button>
+                        <button class="quick-action-btn secondary" style="justify-content: flex-start; gap: 12px;" onclick="alert('Formulir transkrip sementara akan dibuka.')">
+                            <i class="fas fa-file-alt" style="width:20px;"></i> Transkrip Nilai Sementara
+                        </button>
+                        <button class="quick-action-btn secondary" style="justify-content: flex-start; gap: 12px;" onclick="alert('Formulir surat rekomendasi akan dibuka.')">
+                            <i class="fas fa-award" style="width:20px;"></i> Surat Rekomendasi
+                        </button>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <div class="card-header"><h2><i class="fas fa-clock"></i> Status Pengajuan</h2></div>
+                    <div class="notification-list">
+                        <div class="notif-item">
+                            <div class="notif-icon success"><i class="fas fa-check"></i></div>
+                            <div class="notif-content">
+                                <span class="notif-title">Surat Keterangan Aktif</span>
+                                <span class="notif-desc">Siap diunduh</span>
+                                <span class="notif-time">28 Mei 2026</span>
+                            </div>
+                        </div>
+                        <div class="notif-item unread">
+                            <div class="notif-icon warning"><i class="fas fa-hourglass-half"></i></div>
+                            <div class="notif-content">
+                                <span class="notif-title">Transkrip Sementara</span>
+                                <span class="notif-desc">Sedang diproses (1–3 hari kerja)</span>
+                                <span class="notif-time">1 Juni 2026</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ====== PAGE: PENGATURAN ====== -->
+        <div class="content-area page-content" id="page-pengaturan" style="display:none;">
+            <div class="page-header-section">
+                <h1 class="page-title"><i class="fas fa-cog"></i> Pengaturan</h1>
+                <p class="page-subtitle">Kustomisasi tampilan dan preferensi akun</p>
+            </div>
+            <div class="content-grid">
+                <div class="content-card">
+                    <div class="card-header"><h2><i class="fas fa-palette"></i> Tampilan</h2></div>
+                    <div style="display: flex; flex-direction: column; gap: 16px; padding: 8px 0;">
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--text-primary);">Mode Gelap</div>
+                                <div style="font-size:0.85rem; color: var(--text-secondary);">Aktifkan tema gelap untuk kenyamanan mata</div>
+                            </div>
+                            <button class="acc-btn" id="darkModeToggle2" style="width:48px; height:28px; border-radius: 999px; background: var(--gray-200); position:relative; border: none; cursor: pointer;" onclick="document.getElementById('darkModeToggle').click()">
+                                <i class="fas fa-moon"></i>
+                            </button>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--text-primary);">Kontras Tinggi</div>
+                                <div style="font-size:0.85rem; color: var(--text-secondary);">Tingkatkan kontras untuk aksesibilitas</div>
+                            </div>
+                            <button class="acc-btn" onclick="document.getElementById('highContrast').click()">
+                                <i class="fas fa-adjust"></i>
+                            </button>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--text-primary);">Ukuran Font</div>
+                                <div style="font-size:0.85rem; color: var(--text-secondary);">Sesuaikan ukuran teks</div>
+                            </div>
+                            <div style="display:flex; gap: 8px;">
+                                <button class="acc-btn" onclick="document.getElementById('fontDecrease').click()"><i class="fas fa-font"></i><sub>-</sub></button>
+                                <button class="acc-btn" onclick="document.getElementById('fontIncrease').click()"><i class="fas fa-font"></i><sup>+</sup></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <div class="card-header"><h2><i class="fas fa-bell"></i> Notifikasi</h2></div>
+                    <div style="display: flex; flex-direction: column; gap: 16px; padding: 8px 0;">
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <span style="color: var(--text-primary);">Pengingat KRS</span>
+                            <input type="checkbox" checked style="width:18px; height:18px;">
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <span style="color: var(--text-primary);">Nilai Baru</span>
+                            <input type="checkbox" checked style="width:18px; height:18px;">
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <span style="color: var(--text-primary);">Info Perwalian</span>
+                            <input type="checkbox" checked style="width:18px; height:18px;">
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <span style="color: var(--text-primary);">Pengumuman Akademik</span>
+                            <input type="checkbox" style="width:18px; height:18px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ====== AI CHATBOT ====== -->
+    <div class="chatbot-fab" id="chatbotFab" aria-label="Buka AI Assistant">
+        <div class="fab-pulse"></div>
+        <i class="fas fa-robot"></i>
+    </div>
+    <div class="chatbot-panel" id="chatbotPanel" role="dialog" aria-label="AI Academic Assistant" aria-hidden="true">
+        <div class="chatbot-header">
+            <div class="chatbot-title">
+                <div class="chatbot-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div>
+                    <span class="chatbot-name">NIKA</span>
+                    <span class="chatbot-desc">Asisten Akademik AI</span>
+                </div>
+            </div>
+            <button class="chatbot-close" id="chatbotClose" aria-label="Tutup chatbot">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="chatbot-body" id="chatbotBody">
+            <div class="chat-message bot">
+                <div class="chat-bubble">
+                    <p>Halo! 👋 Saya <strong>NIKA</strong> (Navigator Informasi Kampus Akademik), asisten AI Anda.</p>
+                    <p>Saya bisa membantu Anda dengan:</p>
+                    <ul>
+                        <li>📋 Informasi KRS & mata kuliah</li>
+                        <li>📅 Jadwal kuliah & ujian</li>
+                        <li>📊 Info nilai & IPK</li>
+                        <li>🔍 Navigasi sistem</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="chat-suggestions">
+                <button class="suggestion-chip" data-msg="Bagaimana cara mengisi KRS?">Cara isi KRS?</button>
+                <button class="suggestion-chip" data-msg="Berapa IPK saya saat ini?">Cek IPK saya</button>
+                <button class="suggestion-chip" data-msg="Apa jadwal kuliah saya hari ini?">Jadwal hari ini</button>
+            </div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="chatInput" placeholder="Ketik pertanyaan Anda..." aria-label="Input pesan chatbot">
+            <button id="chatSend" aria-label="Kirim pesan">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- ====== COMMAND PALETTE (Ctrl+K) ====== -->
+    <div class="command-palette-overlay" id="commandPaletteOverlay">
+        <div class="command-palette" role="dialog" aria-label="Command Palette">
+            <div class="cp-search">
+                <i class="fas fa-search"></i>
+                <input type="text" id="cpInput" placeholder="Cari menu, fitur, atau halaman..." aria-label="Cari di command palette">
+                <kbd>ESC</kbd>
+            </div>
+            <div class="cp-results" id="cpResults">
+                <div class="cp-section-title">Halaman</div>
+                <a href="#" class="cp-item" data-page="dashboard">
+                    <i class="fas fa-th-large"></i><span>Dashboard</span><kbd>Alt+1</kbd>
+                </a>
+                <a href="#" class="cp-item" data-page="krs">
+                    <i class="fas fa-clipboard-list"></i><span>Pengisian KRS</span><kbd>Alt+2</kbd>
+                </a>
+                <a href="#" class="cp-item" data-page="jadwal">
+                    <i class="fas fa-calendar-alt"></i><span>Jadwal Kuliah</span><kbd>Alt+3</kbd>
+                </a>
+                <a href="#" class="cp-item" data-page="nilai">
+                    <i class="fas fa-chart-line"></i><span>Nilai & Transkrip</span><kbd>Alt+4</kbd>
+                </a>
+                <div class="cp-section-title">Aksi Cepat</div>
+                <a href="#" class="cp-item" data-page="krs">
+                    <i class="fas fa-print"></i><span>Cetak KRS</span>
+                </a>
+                <a href="#" class="cp-item" data-page="nilai">
+                    <i class="fas fa-file-pdf"></i><span>Download Transkrip</span>
+                </a>
+                <a href="#" class="cp-item" data-action="darkmode">
+                    <i class="fas fa-moon"></i><span>Toggle Mode Gelap</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== NOTIFICATION PANEL ====== -->
+    <div class="notification-panel" id="notificationPanel" role="dialog" aria-label="Panel Notifikasi" aria-hidden="true">
+        <div class="np-header">
+            <h3>Notifikasi</h3>
+            <button class="np-mark-read">Tandai semua dibaca</button>
+        </div>
+        <div class="np-list">
+            <div class="np-item unread">
+                <div class="np-icon warning"><i class="fas fa-exclamation-triangle"></i></div>
+                <div class="np-content">
+                    <strong>Batas Pengisian KRS</strong>
+                    <p>Berakhir dalam 3 hari</p>
+                    <span class="np-time">2 jam lalu</span>
+                </div>
+            </div>
+            <div class="np-item unread">
+                <div class="np-icon success"><i class="fas fa-check-circle"></i></div>
+                <div class="np-content">
+                    <strong>Nilai Basis Data diperbarui</strong>
+                    <p>Nilai: A (4.00)</p>
+                    <span class="np-time">5 jam lalu</span>
+                </div>
+            </div>
+            <div class="np-item">
+                <div class="np-icon info"><i class="fas fa-info-circle"></i></div>
+                <div class="np-content">
+                    <strong>Jadwal Perwalian</strong>
+                    <p>Dimulai minggu depan</p>
+                    <span class="np-time">1 hari lalu</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== ONBOARDING ====== -->
+    <div class="onboarding-overlay" id="onboardingOverlay">
+        <div class="onboarding-modal">
+            <div class="onboarding-header">
+                <span class="onboarding-step" id="onboardingStepLabel">1 / 4</span>
+                <button class="onboarding-skip" id="onboardingSkip">Lewati</button>
+            </div>
+            <div class="onboarding-content" id="onboardingContent">
+                <div class="onboarding-icon"><i class="fas fa-hand-sparkles"></i></div>
+                <h3>Selamat Datang di My Academic!</h3>
+                <p>Mari kami tunjukkan fitur-fitur utama yang akan membantu aktivitas akademik Anda.</p>
+            </div>
+            <div class="onboarding-footer">
+                <button class="onboarding-btn secondary" id="onboardingPrev" style="visibility: hidden;">
+                    <i class="fas fa-arrow-left"></i> Sebelumnya
+                </button>
+                <div class="onboarding-dots" id="onboardingDots">
+                    <span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                </div>
+                <button class="onboarding-btn primary" id="onboardingNext">
+                    Selanjutnya <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== MODAL STATUS ====== -->
+    <div class="custom-modal-overlay" id="modalStatus">
+        <div class="custom-modal">
+            <div class="custom-modal-header">
+                <h3 id="modalStatusTitle">Detail Status</h3>
+                <button class="custom-modal-close" onclick="document.getElementById('modalStatus').classList.remove('open')"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="custom-modal-body" style="text-align:center; padding: 24px;">
+                <div id="modalStatusIcon" style="width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin:0 auto 16px;"></div>
+                <div id="modalStatusValue" style="font-size:2rem;font-weight:800;color:var(--text-primary);"></div>
+                <div id="modalStatusDesc" style="color:var(--text-secondary);margin-top:8px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== MODAL JADWAL (for dashboard button) ====== -->
+    <div class="custom-modal-overlay" id="modalJadwal">
+        <div class="custom-modal">
+            <div class="custom-modal-header">
+                <h3>Jadwal Kuliah Hari Ini</h3>
+                <button class="custom-modal-close" id="closeJadwal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="custom-modal-body">
+                <div class="schedule-list" style="padding: 0;">
+                    <div class="schedule-item current">
+                        <div class="schedule-time"><span class="time-start">08:00</span><span class="time-end">10:30</span></div>
+                        <div class="schedule-divider"><div class="divider-dot current"></div><div class="divider-line"></div></div>
+                        <div class="schedule-detail">
+                            <span class="schedule-subject">Desain Interaksi Perangkat Lunak</span>
+                            <span class="schedule-info"><i class="fas fa-map-marker-alt"></i> Ruang 9.3.2</span>
+                            <span class="schedule-status ongoing">Sedang Berlangsung</span>
+                        </div>
+                    </div>
+                    <div class="schedule-item upcoming">
+                        <div class="schedule-time"><span class="time-start">13:00</span><span class="time-end">15:30</span></div>
+                        <div class="schedule-divider"><div class="divider-dot"></div><div class="divider-line"></div></div>
+                        <div class="schedule-detail">
+                            <span class="schedule-subject">Pemrograman Mobile</span>
+                            <span class="schedule-info"><i class="fas fa-map-marker-alt"></i> Lab 8.1.1</span>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time"><span class="time-start">16:00</span><span class="time-end">18:00</span></div>
+                        <div class="schedule-divider"><div class="divider-dot"></div></div>
+                        <div class="schedule-detail">
+                            <span class="schedule-subject">Kecerdasan Buatan</span>
+                            <span class="schedule-info"><i class="fas fa-map-marker-alt"></i> Ruang 7.2.1</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
